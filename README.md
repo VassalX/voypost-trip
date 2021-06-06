@@ -6,8 +6,6 @@
 
 ### Install
 
-Create database ```trip_db``` with collection ```trips``` 
-
 ```npm install```
 
 ### Run
