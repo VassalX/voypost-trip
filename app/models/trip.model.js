@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 const tripsSchema = mongoose.Schema({
     fromPlace: {
@@ -9,7 +9,7 @@ const tripsSchema = mongoose.Schema({
         id: String,
         name: String
     },
-});
+})
 
-const trips = mongoose.model('trips', tripsSchema);
-export default trips;
+const trips = mongoose.model('trips', tripsSchema)
+export default trips

@@ -1,23 +1,20 @@
-const { ApolloServer } = require('apollo-server')
-const mongoose = require('mongoose')
+import { ApolloServer } from 'apollo-server'
+import mongoose from 'mongoose'
 import Trips from './data-sources/Trips'
 import TripsModel from './models/trip.model'
 import MapBoxAPI from './data-sources/mabpox-api'
-const dbConfig = require('./config/db.config')
-const { typeDefs } = require('./typedefs')
-const resolvers = require('./resolvers')
-const cors = require('cors')
-const corsOptions = {
-    origin: 'http://localhost:4000'
-}
-mongoose.connect('mongodb://localhost:27017/trip_db', {
+import dbConfig from './config/db.config'
+import typeDefs from './typedefs'
+import resolvers from './resolvers'
+
+mongoose.connect(dbConfig.url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
-    console.log("Connected to the database!");
+    console.log("Connected to the database!")
 }).catch(err => {
-    console.log("Cannot connect to the datavase!", err);
-    process.exit();
+    console.log("Cannot connect to the datavase!", err)
+    process.exit()
 })
 
 const server = new ApolloServer({
@@ -29,11 +26,10 @@ const server = new ApolloServer({
             mapBoxAPI: new MapBoxAPI()
         }
     },
-    cors: corsOptions,
     tracing: true
-});
+})
 
 // The `listen` method launches a web server.
 server.listen().then(({ url }) => {
-    console.log(`🚀  Server ready at ${url}`);
-});
+    console.log(`🚀  Server ready at ${url}`)
+})

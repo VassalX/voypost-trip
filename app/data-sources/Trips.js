@@ -1,7 +1,7 @@
-const { MongoDataSource } = require('apollo-datasource-mongodb')
+import { MongoDataSource } from 'apollo-datasource-mongodb'
 
 export default class Trips extends MongoDataSource {
     getTripsOffsetLimit(offset, limit) {
-        return this.model.find().skip(offset).limit(limit);
+        return this.model.find().skip(offset).limit(limit)
     }
 }

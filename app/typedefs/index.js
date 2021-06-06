@@ -1,5 +1,5 @@
-const { gql } = require('apollo-server')
-export const typeDefs = gql `
+import { gql } from 'apollo-server'
+const typeDefs = gql `
 type Query {
     trips(offset: Int, limit: Int): [Trip!] !
 }
@@ -24,3 +24,4 @@ input CreateTripInput {
     toPlaceName: String!#to place name e.g.Berlin | https: //docs.mapbox.com/
 }
 `
+export default typeDefs

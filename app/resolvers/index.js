@@ -1,22 +1,22 @@
-module.exports = {
+const resolvers = {
     Query: {
         trips: (_, { offset, limit }, { dataSources }) => {
-            return dataSources.trips.getTripsOffsetLimit(offset, limit);
+            return dataSources.trips.getTripsOffsetLimit(offset, limit)
         }
     },
     Mutation: {
         createTrip: async(_, { input }, { dataSources }) => {
-            const { fromPlaceName, toPlaceName } = input;
-            const loc1 = await dataSources.mapBoxAPI.getLocation(fromPlaceName);
-            const loc2 = await dataSources.mapBoxAPI.getLocation(toPlaceName);
+            const { fromPlaceName, toPlaceName } = input
+            const fromLocation = await dataSources.mapBoxAPI.getLocation(fromPlaceName)
+            const toLocation = await dataSources.mapBoxAPI.getLocation(toPlaceName)
             const newTrip = {
                 fromPlace: {
-                    id: loc1.features[0].id,
-                    name: loc1.features[0].place_name
+                    id: fromLocation.features[0].id,
+                    name: fromLocation.features[0].place_name
                 },
                 toPlace: {
-                    id: loc2.features[0].id,
-                    name: loc2.features[0].place_name
+                    id: toLocation.features[0].id,
+                    name: toLocation.features[0].place_name
                 }
             }
             const result = await dataSources.trips.model.create(newTrip)
@@ -24,16 +24,14 @@ module.exports = {
         }
     },
     Trip: {
-        id: (id) => {
-            return "urn::trip:" + id
+        id: (parent) => {
+            return "urn::trip:" + parent.id
         }
     },
     Location: {
-        id: (id) => {
-            return "urn::mapbox:" + id
-        },
-        name: (name) => {
-            return name
+        id: (parent) => {
+            return "urn::mapbox:" + parent.id
         }
     }
 }
+export default resolvers
