@@ -2,12 +2,10 @@ import mongoose from 'mongoose'
 
 const tripsSchema = mongoose.Schema({
     fromPlace: {
-        id: String,
-        name: String
+        id: String
     },
     toPlace: {
-        id: String,
-        name: String
+        id: String
     },
 })
 

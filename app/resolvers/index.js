@@ -11,12 +11,10 @@ const resolvers = {
             const toLocation = await dataSources.mapBoxAPI.getLocation(toPlaceName)
             const newTrip = {
                 fromPlace: {
-                    id: fromLocation.id,
-                    name: fromLocation.place_name
+                    id: fromLocation.id
                 },
                 toPlace: {
-                    id: toLocation.id,
-                    name: toLocation.place_name
+                    id: toLocation.id
                 }
             }
             const result = await dataSources.trips.model.create(newTrip)
@@ -31,6 +29,10 @@ const resolvers = {
     Location: {
         id: (parent) => {
             return "urn::mapbox:" + parent.id
+        },
+        name: async(parent, _, { dataSources }) => {
+            const location = await dataSources.mapBoxAPI.getLocation(parent.id)
+            return location.place_name
         }
     }
 }
