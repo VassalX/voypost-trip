@@ -11,12 +11,12 @@ const resolvers = {
             const toLocation = await dataSources.mapBoxAPI.getLocation(toPlaceName)
             const newTrip = {
                 fromPlace: {
-                    id: fromLocation.features[0].id,
-                    name: fromLocation.features[0].place_name
+                    id: fromLocation.id,
+                    name: fromLocation.place_name
                 },
                 toPlace: {
-                    id: toLocation.features[0].id,
-                    name: toLocation.features[0].place_name
+                    id: toLocation.id,
+                    name: toLocation.place_name
                 }
             }
             const result = await dataSources.trips.model.create(newTrip)

@@ -11,9 +11,9 @@ mongoose.connect(dbConfig.url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
-    console.log("Connected to the database!")
+    console.log("Connected to the MongoDB!")
 }).catch(err => {
-    console.log("Cannot connect to the datavase!", err)
+    console.log("Cannot connect to the MongoDB!", err)
     process.exit()
 })
 
@@ -29,7 +29,6 @@ const server = new ApolloServer({
     tracing: true
 })
 
-// The `listen` method launches a web server.
 server.listen().then(({ url }) => {
     console.log(`🚀  Server ready at ${url}`)
 })
