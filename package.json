@@ -1,19 +1,31 @@
 {
-  "name": "voypost-trip",
-  "version": "1.0.0",
-  "description": "Test task - Trips apollo server",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "keywords": [
-    "voypost",
-    "apollo",
-    "trip",
-    "mapbox",
-    "mongodb"
-  ],
-  "author": "Oleksandr Vasylenko",
-  "license": "ISC"
+    "name": "voypost-trip",
+    "version": "1.0.0",
+    "description": "Test task - Trips apollo server",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon --exec babel-node app/server.js"
+    },
+    "keywords": [
+        "voypost",
+        "apollo",
+        "trip",
+        "mapbox",
+        "mongodb"
+    ],
+    "author": "Oleksandr Vasylenko",
+    "license": "ISC",
+    "dependencies": {
+        "apollo-datasource-mongodb": "^0.4.1",
+        "apollo-datasource-rest": "^0.14.0",
+        "apollo-server": "^2.25.0",
+        "graphql": "^15.5.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.14.3",
+        "@babel/node": "^7.14.2",
+        "@babel/preset-env": "^7.14.4",
+        "nodemon": "^2.0.7"
+    }
 }
