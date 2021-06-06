@@ -2,11 +2,11 @@ import mongoose from 'mongoose';
 
 const tripsSchema = mongoose.Schema({
     fromPlace: {
-        id: Object,
+        id: String,
         name: String
     },
     toPlace: {
-        id: Object,
+        id: String,
         name: String
     },
 });

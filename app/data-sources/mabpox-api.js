@@ -1,6 +1,6 @@
 const { RESTDataSource } = require('apollo-datasource-rest')
 
-class MapBoxAPI extends RESTDataSource {
+export default class MapBoxAPI extends RESTDataSource {
     constructor() {
         super();
         this.baseURL = 'https://api.mapbox.com';
@@ -8,8 +8,7 @@ class MapBoxAPI extends RESTDataSource {
     }
 
     async getLocation(name) {
-        result = this.get(`/geocoding/v5/mapbox.places/${name}.json?limit=1&access_token=${this.access_token}`)
-        console.log(result)
-        return result;
+        const result = await this.get(`/geocoding/v5/mapbox.places/${name}.json?limit=1&access_token=${this.access_token}`)
+        return JSON.parse(result);
     }
 }

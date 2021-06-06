@@ -2,6 +2,7 @@ const { ApolloServer } = require('apollo-server')
 const mongoose = require('mongoose')
 import Trips from './data-sources/Trips'
 import TripsModel from './models/trip.model'
+import MapBoxAPI from './data-sources/mabpox-api'
 const dbConfig = require('./config/db.config')
 const { typeDefs } = require('./typedefs')
 const resolvers = require('./resolvers')
@@ -24,7 +25,8 @@ const server = new ApolloServer({
     resolvers,
     dataSources: () => {
         return {
-            trips: new Trips(TripsModel)
+            trips: new Trips(TripsModel),
+            mapBoxAPI: new MapBoxAPI()
         }
     },
     cors: corsOptions,
