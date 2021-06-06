@@ -2,11 +2,13 @@ import mongoose from 'mongoose';
 
 const tripsSchema = mongoose.Schema({
     fromPlace: {
-        id: String
+        id: Object,
+        name: String
     },
     toPlace: {
-        id: String
-    }
+        id: Object,
+        name: String
+    },
 });
 
 const trips = mongoose.model('trips', tripsSchema);

@@ -27,10 +27,9 @@ const server = new ApolloServer({
             trips: new Trips(TripsModel)
         }
     },
-    cors: corsOptions
+    cors: corsOptions,
+    tracing: true
 });
-
-console.log(server.dataSources)
 
 // The `listen` method launches a web server.
 server.listen().then(({ url }) => {
